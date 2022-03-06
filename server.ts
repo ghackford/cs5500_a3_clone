@@ -20,8 +20,8 @@ var cors = require('cors')
 
 // build the connection string
 const PROTOCOL = "mongodb+srv";
-const DB_USERNAME = "iamuser"; //process.env.DB_USERNAME;
-const DB_PASSWORD = "0Y29QM0lTezgeEuO"; //process.env.DB_PASSWORD;
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
 const HOST = "cluster0.3gblq.mongodb.net";
 const DB_NAME = "myFirstDatabase";
 const DB_QUERY = "retryWrites=true&w=majority";
