@@ -60,6 +60,8 @@ export default class UserController implements UserControllerI {
               UserController.userController.deleteUsersByUsername);
             app.get("/api/users/delete",
               UserController.userController.deleteAllUsers);
+            app.post("/api/users/username/:username",
+              UserController.userController.findUserByUsername);
         }
         return UserController.userController;
     }
@@ -122,6 +124,9 @@ export default class UserController implements UserControllerI {
         UserController.userDao.deleteUser(req.params.uid)
             .then((status) => res.send(status));
     
+    findUserByUsername = (req: Request, res: Response) =>
+        UserController.userDao.findUserByUsername(req.params.username)
+            .then((user: User) => res.json(user));
     /**
      * Removes all user instances from the database. Useful for testing
      * @param {Request} req Represents request from client 
