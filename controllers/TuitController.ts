@@ -42,7 +42,7 @@ export default class TuitController implements TuitControllerI {
             app.put("/api/tuits/:uid", TuitController.tuitController.updateTuit);
             app.delete("/api/tuits/:uid", TuitController.tuitController.deleteTuit);
             
-            app.delete("/api/tuits/delete", TuitController.tuitController.deleteTuitByBody);
+            app.delete("/api/tuits/content", TuitController.tuitController.findTuitByContent);
         }
         return TuitController.tuitController;
     }
@@ -112,7 +112,7 @@ export default class TuitController implements TuitControllerI {
         TuitController.tuitDao.deleteTuit(req.params.uid)
             .then((status) => res.send(status));
     
-    deleteTuitByBody = (req: Request, res: Response) =>
-        TuitController.tuitDao.deleteTuitByBody(req.body)
-            .then((status) => res.send(status));
+    findTuitByContent = (req: Request, res: Response) =>
+        TuitController.tuitDao.findTuitByContent(req.body)
+            .then((tuit: Tuit) => res.json(tuit));
 };
